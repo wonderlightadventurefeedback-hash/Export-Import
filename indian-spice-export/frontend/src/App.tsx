@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import { Layout } from "./components/layout/Layout";
 import { HomePage } from "./pages/Home";
 import { AboutPage } from "./pages/About";
@@ -73,6 +74,7 @@ export const App: React.FC = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      <Analytics />
     </BrowserRouter>
   );
 };

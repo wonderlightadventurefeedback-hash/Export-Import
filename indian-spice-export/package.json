@@ -24,5 +24,8 @@
     "commodities"
   ],
   "author": "Indian Spice Export",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@vercel/node": "^30.0.0"
+  }
 }
