@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "private": true,
   "description": "Root workspace forwarder for indian-spice-export",
+  "workspaces": [
+    "indian-spice-export",
+    "indian-spice-export/frontend",
+    "indian-spice-export/backend"
+  ],
   "scripts": {
+    "build": "npm --prefix indian-spice-export install --include=dev && npm --prefix indian-spice-export run build",
     "dev": "npm --prefix indian-spice-export run dev",
     "dev:frontend": "npm --prefix indian-spice-export run dev:frontend",
     "dev:backend": "npm --prefix indian-spice-export run dev:backend",
-    "build": "npm --prefix indian-spice-export run build",
     "start": "npm --prefix indian-spice-export run dev"
+  },
+  "dependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^6.1.0"
   }
 }
-
