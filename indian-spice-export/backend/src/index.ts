@@ -7,8 +7,13 @@ dotenv.config();
 const port = process.env.PORT || 5000;
 const app = createApp();
 
-app.listen(port, () => {
-  console.log(`[ISE Backend] Indian Spice Export API server running on port ${port}`);
-  console.log(`[ISE Backend] Environment: ${process.env.NODE_ENV || "development"}`);
-  console.log(`[ISE Backend] Health check available at: http://localhost:${port}/api/health`);
-});
+// Start listening if not running in test mode
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {
+    console.log(`[ISE Backend] Indian Spice Export API server running on port ${port}`);
+    console.log(`[ISE Backend] Environment: ${process.env.NODE_ENV || "development"}`);
+    console.log(`[ISE Backend] Health check available at: http://localhost:${port}/api/health`);
+  });
+}
+
+export default app;

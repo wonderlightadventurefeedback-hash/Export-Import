@@ -23,7 +23,11 @@ export function createApp(): Express {
       origin: (origin, callback) => {
         // Allow requests with no origin (like mobile apps, curl, or server-to-server)
         if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV !== "production") {
+        if (
+          allowedOrigins.indexOf(origin) !== -1 ||
+          origin.endsWith(".vercel.app") ||
+          process.env.NODE_ENV !== "production"
+        ) {
           return callback(null, true);
         }
         return callback(new Error("CORS policy violation"), false);
@@ -32,8 +36,9 @@ export function createApp(): Express {
     })
   );
 
-  // Rate Limiting
+  // Rate Limiting (handles both /api prefix and root / rewrites)
   app.use("/api", generalLimiter);
+  app.use("/", generalLimiter);
 
   // Body Parsers with reasonable payload limits
   app.use(express.json({ limit: "1mb" }));
@@ -42,8 +47,9 @@ export function createApp(): Express {
   // Request Logging
   app.use(requestLogger);
 
-  // Mount API Router
+  // Mount API Router for both /api prefix and root / paths
   app.use("/api", apiRouter);
+  app.use("/", apiRouter);
 
   // 404 Handler for undefined API routes
   app.use((req: Request, res: Response) => {
