@@ -1,0 +1,28 @@
+{
+  "name": "indian-spice-export",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Indian Spice Export - Premium B2B Spice Export Monorepo",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev": "npm --workspace=frontend run dev",
+    "dev:frontend": "npm --workspace=frontend run dev",
+    "dev:backend": "npm --workspace=backend run dev",
+    "build": "npm --workspace=frontend run build && npm --workspace=backend run build",
+    "build:frontend": "npm --workspace=frontend run build",
+    "build:backend": "npm --workspace=backend run build",
+    "test": "npm --workspace=frontend run test && npm --workspace=backend run test"
+  },
+  "keywords": [
+    "spice-export",
+    "b2b",
+    "india",
+    "wholesale",
+    "commodities"
+  ],
+  "author": "Indian Spice Export",
+  "license": "UNLICENSED"
+}
